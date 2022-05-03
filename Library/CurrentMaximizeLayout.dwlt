@@ -21,10 +21,10 @@ MonoBehaviour:
     y: 30
     width: 1440
     height: 718
-  m_MinSize: {x: 578, y: 492}
-  m_MaxSize: {x: 14001, y: 14042}
+  m_MinSize: {x: 579, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 11395
+  controlID: 4730
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_MinSize: {x: 303, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 11396
+  controlID: 4731
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_MinSize: {x: 303, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 11397
+  controlID: 4732
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -220,7 +220,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d4c8ffff84faffff
+      m_ExpandedIDs: 54fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -307,9 +307,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 15.792559, y: 5.209708, z: 11.62003}
+    m_Target: {x: 4.698784, y: 2.0367002, z: 11.5803995}
     speed: 2
-    m_Value: {x: 15.792559, y: 5.209708, z: 11.62003}
+    m_Value: {x: 4.698784, y: 2.0367002, z: 11.5803995}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -356,13 +356,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.19992317, y: -0.017050708, z: 0.003480234, w: -0.9796606}
+    m_Target: {x: -0.12145127, y: -0.03066964, z: 0.0037539648, w: -0.9921199}
     speed: 2
-    m_Value: {x: -0.19992249, y: -0.017050648, z: 0.0034802218, w: -0.9796572}
+    m_Value: {x: -0.12145086, y: -0.030669535, z: 0.0037539518, w: -0.99211645}
   m_Size:
-    m_Target: 21.556177
+    m_Target: 14.82925
     speed: 2
-    m_Value: 21.556177
+    m_Value: 14.82925
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -452,22 +452,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/michaelbecker/repos/unity_course/ProjectBoost
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 404c0000
-    m_LastClickedID: 19520
-    m_ExpandedIDs: 00000000984b000000ca9a3b
+    m_SelectedIDs: 8c3d0000
+    m_LastClickedID: 15756
+    m_ExpandedIDs: 000000007a3d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -495,7 +495,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000984b000000ca9a3b
+    m_ExpandedIDs: 000000007a3d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -595,8 +595,8 @@ MonoBehaviour:
     y: 0
     width: 380
     height: 718
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}

@@ -11,11 +11,23 @@ public class CollisionHandler : MonoBehaviour
 
    public float frequency = 440;
    public int position = 0;
-  public int samplerate = 44100;
+   public int samplerate = 44100;
   
   bool isTransitioning = false;
   [SerializeField] AudioClip death;  
   [SerializeField] AudioClip success; 
+
+
+   [SerializeField] ParticleSystem death_particles;  
+   [SerializeField] ParticleSystem success_particles; 
+
+
+   [SerializeField] ParticleSystem mainThruster;
+    [SerializeField] ParticleSystem leftThruster;
+
+    [SerializeField] ParticleSystem rightThruster;
+
+
    void Start()
    {
        audioSource = GetComponent<AudioSource>();
@@ -39,8 +51,15 @@ public class CollisionHandler : MonoBehaviour
   private void startCrashSequence()
     {
        if (!isTransitioning) {
+         audioSource.Stop();
+         mainThruster.Stop();
+         leftThruster.Stop();
+         rightThruster.Stop();
+
         isTransitioning = true;
+         death_particles.Play();
         audioSource.PlayOneShot(death);
+        
        }
        GetComponent<Movement>().enabled = false;
        Invoke("reloadLev", delay);
@@ -49,6 +68,11 @@ public class CollisionHandler : MonoBehaviour
     {
          if (!isTransitioning) {
         isTransitioning = true;
+         audioSource.Stop();
+         mainThruster.Stop();
+         leftThruster.Stop();
+         rightThruster.Stop();
+        success_particles.Play();
         audioSource.PlayOneShot(success);
        }
        GetComponent<Movement>().enabled = false;

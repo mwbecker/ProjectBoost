@@ -12,8 +12,12 @@ public class Movement : MonoBehaviour
     [SerializeField] float rotationThrust = 1;
 
     [SerializeField] AudioClip mainEngine;
+    
+    [SerializeField] ParticleSystem mainThruster;
+    [SerializeField] ParticleSystem leftThruster;
 
-    AudioSource audoSource;
+    [SerializeField] ParticleSystem rightThruster;
+
 
     void Start()
     {
@@ -25,7 +29,10 @@ public class Movement : MonoBehaviour
     void Update()
     {
         bool isThrusting = ProcessThrust();
-        if (audioSource.isPlaying && !isThrusting) audioSource.Stop();
+        if (audioSource.isPlaying && !isThrusting) {
+           audioSource.Stop();
+           mainThruster.Stop();
+        }
         ProcessRotation();
     }
 
@@ -33,7 +40,10 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) )
         {
-            if (!audioSource.isPlaying) audioSource.PlayOneShot(mainEngine);
+            if (!audioSource.isPlaying) {
+            audioSource.PlayOneShot(mainEngine);
+            mainThruster.Play();
+            }
             rb.AddRelativeForce(mainThrust * Vector3.up * Time.deltaTime );
             return true;
         }
@@ -46,19 +56,28 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-           ApplyRotation(rotationThrust);            
+           ApplyRotation(rotationThrust);     
+           if (!rightThruster.isPlaying)
+           rightThruster.Play();       
         }
 
         else if (Input.GetKey(KeyCode.D))
         {
             ApplyRotation(-rotationThrust);
+            if (!leftThruster.isPlaying)
+            leftThruster.Play();
+        }
+        else 
+        {
+            leftThruster.Stop();
+            rightThruster.Stop();
         }
     }
 
     void ApplyRotation(float rotationThisFrame)
     {
         rb.freezeRotation = true; // Freeze so we can manually rotate
-        transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
+        transform.Rotate(Vector3.left * rotationThisFrame * Time.deltaTime);
         rb.freezeRotation = false; // Unfreezing rotation 
     }
 }

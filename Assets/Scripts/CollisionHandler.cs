@@ -26,13 +26,28 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] ParticleSystem leftThruster;
 
     [SerializeField] ParticleSystem rightThruster;
-
+    
+    bool collisionsDisabled = false;
 
    void Start()
    {
        audioSource = GetComponent<AudioSource>();
    }
+
+   void Update() 
+   {
+      handleDebug();
+   }
+
+   void handleDebug()
+   {
+      if (Input.GetKeyDown(KeyCode.C))
+      {
+         collisionsDisabled = !collisionsDisabled;
+      }
+   }
    private void OnCollisionEnter(Collision other) {
+      if (collisionsDisabled) return;
        switch(other.gameObject.tag) {
            case "Friendly":
              Debug.Log("This thing is Friendly");
@@ -56,7 +71,7 @@ public class CollisionHandler : MonoBehaviour
          leftThruster.Stop();
          rightThruster.Stop();
 
-        isTransitioning = true;
+         isTransitioning = true;
          death_particles.Play();
         audioSource.PlayOneShot(death);
         

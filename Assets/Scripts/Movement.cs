@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Movement : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class Movement : MonoBehaviour
     [SerializeField] ParticleSystem rightThruster;
 
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,50 +31,81 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.L) ) nextLev();
+
         bool isThrusting = ProcessThrust();
-        if (audioSource.isPlaying && !isThrusting) {
-           audioSource.Stop();
-           mainThruster.Stop();
+        if (audioSource.isPlaying && !isThrusting)
+        {
+            StopThrusting();
         }
         ProcessRotation();
+    }
+
+
+    private void StopThrusting()
+    {
+        audioSource.Stop();
+        mainThruster.Stop();
     }
 
     bool ProcessThrust()
     {
         if (Input.GetKey(KeyCode.Space) )
         {
-            if (!audioSource.isPlaying) {
-            audioSource.PlayOneShot(mainEngine);
-            mainThruster.Play();
-            }
-            rb.AddRelativeForce(mainThrust * Vector3.up * Time.deltaTime );
-            return true;
+            return StartThrusting();
         }
         else {
             return false;
         }
        
     }
+
+    private bool StartThrusting()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+            mainThruster.Play();
+        }
+        rb.AddRelativeForce(mainThrust * Vector3.up * Time.deltaTime);
+        return true;
+    }
+
     void ProcessRotation()
     {
         if (Input.GetKey(KeyCode.A))
         {
-           ApplyRotation(rotationThrust);     
-           if (!rightThruster.isPlaying)
-           rightThruster.Play();       
+            rotateLeftLogic();
         }
 
         else if (Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-rotationThrust);
-            if (!leftThruster.isPlaying)
-            leftThruster.Play();
+            rotateRightLogic();
         }
-        else 
+        else
         {
-            leftThruster.Stop();
-            rightThruster.Stop();
+            stopSideThrusting();
         }
+    }
+
+    private void stopSideThrusting()
+    {
+        leftThruster.Stop();
+        rightThruster.Stop();
+    }
+
+    private void rotateRightLogic()
+    {
+        ApplyRotation(-rotationThrust);
+        if (!leftThruster.isPlaying)
+            leftThruster.Play();
+    }
+
+    private void rotateLeftLogic()
+    {
+        ApplyRotation(rotationThrust);
+        if (!rightThruster.isPlaying)
+            rightThruster.Play();
     }
 
     void ApplyRotation(float rotationThisFrame)
@@ -80,4 +114,12 @@ public class Movement : MonoBehaviour
         transform.Rotate(Vector3.left * rotationThisFrame * Time.deltaTime);
         rb.freezeRotation = false; // Unfreezing rotation 
     }
+
+    private void nextLev()
+   {
+      int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+      int nextSceneIndex = (currentSceneIndex + 1) % (SceneManager.sceneCountInBuildSettings);
+      
+      SceneManager.LoadScene(nextSceneIndex);
+   }
 }
